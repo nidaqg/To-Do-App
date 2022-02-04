@@ -6,5 +6,14 @@
 
     .logo-container {
         margin-top: 40px;
+
+        .homepage-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            align-self: center;
+        }
     }
 }
