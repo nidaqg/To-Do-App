@@ -1,0 +1,28 @@
+.todo-container {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+
+
+    .list-container{
+        justify-content: space-between;
+        display: flex;
+        flex-direction: row;
+        margin: 50px;
+        width: 80%;
+        height: 200px;
+
+    }
+
+    .list-box {
+        width: 30%;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        border-radius: 10px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+
+    }
+}
+
