@@ -9,11 +9,13 @@ export const Header = () => {
   return (
     <div className="header-container">
       <div className="left-header">
+        <Link to="/">
         <Image 
         src={logo} 
         boxSize="100px"
         objectFit="cover"
         />
+        </Link>
       </div>
       <Center className="right-header">
         <Link className="header-link" to="/">
