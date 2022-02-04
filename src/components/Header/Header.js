@@ -25,11 +25,12 @@ export const Header = () => {
           To-Do List
         </Link>
 
-        <Link className="header-link" to="/homepage">
+        <Link className="header-link" to="/home">
           <span className="user-span">
             <Avatar
               size="md"
-              name="user Name"
+              bg="purple"
+              name="Random User"
               src="https://bit.ly/dan-abramov"
             />
             <ChevronDownIcon className="header-link"  w={6} h={6}/>
