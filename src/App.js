@@ -10,12 +10,14 @@ import {
 import { Header } from './components/Header/Header';
 import { ToDoPage } from './pages/ToDoList.js/ToDoPage';
 import { HomePage } from './pages/HomePage/HomePage';
-import {UserHomePage} from './pages/UserHomePage/UserHomePage'
+import {UserHomePage} from './pages/UserHomePage/UserHomePage';
+
+import {ToDoContextProvider} from "./context/ToDoContext"
 
 
 function App() {
   return (
-    <>
+    <ToDoContextProvider>
     <BrowserRouter>
 
     <Header/>
@@ -25,7 +27,7 @@ function App() {
       <Route path="home" element={<UserHomePage/>}/>
     </Routes>
     </BrowserRouter>
-    </>
+    </ToDoContextProvider>
   );
 }
 

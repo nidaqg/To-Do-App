@@ -1,12 +1,20 @@
 import { InputRightElement, Button, Input, InputGroup, Text } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { ToDoContext } from "../../context/ToDoContext";
 import { ToDoCard } from "../../components/ToDoCard/ToDoCard";
 import "./ToDoListStyles.scss";
 
 export const ToDoPage = () => {
+//get submit function from context
+  const {handleToDoSubmit} = useContext(ToDoContext);
+//store temp user input value
   const [userInput, setUserInput] = useState("");
 
-
+//handle button click
+const handleClick = ()=> {
+  handleToDoSubmit(userInput)
+  setUserInput("")
+}
   return (
     <div className="todo-container">
 
@@ -24,7 +32,7 @@ export const ToDoPage = () => {
             colorScheme="pink"
             h="1.75rem" 
             size="md"
-            onClick={()=> console.log(userInput)}
+            onClick={()=> handleClick()}
             >
               Add
             </Button>

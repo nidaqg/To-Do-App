@@ -1,21 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./ToDoCardStyles.scss";
 import { Box, Heading } from "@chakra-ui/react";
 import { ToDoItem } from "../ToDoItem/ToDoItem";
+import { ToDoContext } from "../../context/ToDoContext";
 
 export const ToDoCard = () => {
-  const [todoList, setToDoList] = useState([
-    {
-      item: "grocery shopping",
-      id: 1,
-      progress: 1,
-    },
-    {
-      item: "coding",
-      id: 2,
-      progress: 0,
-    },
-  ]);
+
+  const {toDoList} = useContext(ToDoContext);
 
   return (
     <>
@@ -25,8 +16,8 @@ export const ToDoCard = () => {
             size="md">
               To-Do
             </Heading>
-            {todoList
-              ? todoList.filter(list => {
+            {toDoList
+              ? toDoList.filter(list => {
                   if(list.progress === 0){
                   return list
               }}
@@ -34,7 +25,7 @@ export const ToDoCard = () => {
               .map((listitem) => (
                   <ToDoItem
                     key={listitem.id}
-                    todoItem={listitem.item}
+                    todoItem={listitem}
                   />
                 ))
               : null}
@@ -46,8 +37,8 @@ export const ToDoCard = () => {
             <Heading p={4} as="h4" size="md">
               In Progress
             </Heading>
-            {todoList
-              ? todoList.filter(list => {
+            {toDoList
+              ? toDoList.filter(list => {
                   if(list.progress === 1){
                   return list
               }}
@@ -67,8 +58,8 @@ export const ToDoCard = () => {
             <Heading p={4} as="h4" size="md">
               Done With It!
             </Heading>
-            {todoList
-              ? todoList.filter(list => {
+            {toDoList
+              ? toDoList.filter(list => {
                   if(list.progress === 3){
                   return list
               }}

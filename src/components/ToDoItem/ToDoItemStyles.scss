@@ -10,5 +10,13 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+
+        .close-btn {
+
+            &:hover {
+                cursor: pointer;
+                color: hotpink;
+            }
+        }
     }
 }
