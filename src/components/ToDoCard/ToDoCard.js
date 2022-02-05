@@ -21,7 +21,8 @@ export const ToDoCard = () => {
     <>
         <div className="list-box">
           <Box w="100%" p={4}>
-            <Heading p={4} as="h4" size="md">
+            <Heading p={4} as="h4"
+            size="md">
               To-Do
             </Heading>
             {todoList

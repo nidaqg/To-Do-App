@@ -1,5 +1,5 @@
-import { ArrowLeftIcon, ArrowRightIcon, ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
-import { Box, Text } from '@chakra-ui/react';
+import {ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
+import { Box, Text, IconButton } from '@chakra-ui/react';
 import React from 'react';
 import "./ToDoItemStyles.scss";
 
@@ -10,9 +10,21 @@ export const ToDoItem = ({todoItem}) => {
         <Text fontSize="lg">{todoItem}</Text>
         
       <span className='arrows-span'>
-     <ArrowBackIcon w={3} color="pink"/>
-     <Text color="pink" fontSize="sm" marginX={2}>Move item</Text>
-        <ArrowForwardIcon w={3} color="pink"/>
+        <IconButton
+        isRound
+        size="xs"
+        colorScheme="pink"
+        aria-label='back'
+        icon={<ArrowBackIcon/>}
+        />
+     <Text color="grey" fontSize="sm" marginX={2}>Move item</Text>
+        <IconButton
+        isRound
+        size="xs"
+        colorScheme="pink"
+        aria-label='forward'
+        icon={<ArrowForwardIcon/>}
+        />
       </span>
       </Box>
       </>
