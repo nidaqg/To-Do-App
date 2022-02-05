@@ -1,10 +1,24 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect} from "react";
 
 export const ToDoContext = createContext();
 
 export const ToDoContextProvider = ({ children }) => {
     //todo list
   const [toDoList, setToDoList] = useState([]);
+
+  //save to localstorage
+useEffect(()=> {
+    if(toDoList.length){
+localStorage.setItem("list", JSON.stringify(toDoList))}
+},[toDoList]);
+
+useEffect(()=> {
+const getList = localStorage.getItem("list");
+if (getList) {
+    const newList = JSON.parse(getList)
+    setToDoList(newList)
+}
+},[])
 
   //handle user adding new item to to do list
   const handleToDoSubmit = (value) => {
