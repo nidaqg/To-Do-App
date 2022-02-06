@@ -15,7 +15,7 @@ export const HomePage = () => {
         <Image src={logo} />
         <Box>
           <Center className="homepage-text">
-            Simple and elegant To Do List for helping you get it done!
+            Simple and elegant To Do List for helping you get stuff done!
             <Button
               marginY={4}
               colorScheme="pink"

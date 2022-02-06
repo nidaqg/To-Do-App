@@ -12,7 +12,7 @@ export const ToDoItem = ({todoItem}) => {
   return (
       <>
       <Box className='todo-item'>
-        <Text fontSize="md">{todoItem.item}</Text>
+        <Text fontSize="md" alignSelf="start" mb={2}>{todoItem.item}</Text>
         
       <span className='arrows-span'>
         <IconButton

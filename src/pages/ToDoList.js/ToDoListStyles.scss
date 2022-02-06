@@ -10,6 +10,17 @@
         align-items: center;
         width: 40%;
         padding: 40px;
+
+        @media screen and (max-width: 1000px) {
+            width: 60%;
+            padding: 35px;
+        }
+
+        @media screen and (max-width: 768px ) {
+            width: 90%;
+            padding: 20px;
+            text-align: center;
+        }
     }
 
 
@@ -17,8 +28,13 @@
         justify-content: space-between;
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         margin: auto;
         width: 90%;
+
+        @media screen and (max-width: 768px) {
+            justify-content: center;
+        }
     }
 }
 
