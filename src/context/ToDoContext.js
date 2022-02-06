@@ -4,14 +4,16 @@ export const ToDoContext = createContext();
 
 export const ToDoContextProvider = ({ children }) => {
     //todo list
+    //each item = { item: todo item name, id: id, progress: 0, 1 or 2}
   const [toDoList, setToDoList] = useState([]);
 
-  //save to localstorage
+  //save to localstorage every time list changes
 useEffect(()=> {
     if(toDoList.length){
 localStorage.setItem("list", JSON.stringify(toDoList))}
 },[toDoList]);
 
+//retreive from local storage every time app loads
 useEffect(()=> {
 const getList = localStorage.getItem("list");
 if (getList) {
@@ -41,7 +43,37 @@ const newList = toDoList.filter(
     (x) => x.id !==toDoitem.id
 );
 setToDoList(newList);
+  }
 
+  //handle change progress status forwards
+  const statusChangeForward = (toDoitem) => {
+
+    const newList = toDoList.map(item => {
+      if (toDoitem.id === item.id) {
+        return {
+          item: item.item,
+          id: item.id, 
+          progress: item.progress === 2 ? 2: item.progress + 1
+        }
+
+      } else return item;
+    });
+    setToDoList(newList)
+  }
+
+  //handle change progress status backwards
+  const statusChangeBack = (toDoitem) => {
+    const newList = toDoList.map(item => {
+      if (toDoitem.id === item.id) {
+        return {
+          item: item.item,
+          id: item.id, 
+          progress: item.progress === 0 ? 0 :item.progress - 1
+        }
+
+      } else return item;
+    });
+    setToDoList(newList)
   }
 
 
@@ -51,6 +83,8 @@ setToDoList(newList);
       toDoList,
       handleToDoSubmit,
       deleteToDo,
+      statusChangeBack,
+      statusChangeForward
   }}
   >{children}</ToDoContext.Provider>
   );

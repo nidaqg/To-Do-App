@@ -46,7 +46,7 @@ export const ToDoCard = () => {
               .map((listitem) => (
                   <ToDoItem
                     key={listitem.id}
-                    todoItem={listitem.item}
+                    todoItem={listitem}
                   />
                 ))
               : null}
@@ -60,14 +60,14 @@ export const ToDoCard = () => {
             </Heading>
             {toDoList
               ? toDoList.filter(list => {
-                  if(list.progress === 3){
+                  if(list.progress === 2){
                   return list
               }}
               )
               .map((listitem) => (
                   <ToDoItem
                     key={listitem.id}
-                    todoItem={listitem.item}
+                    todoItem={listitem}
                   />
                 ))
               : null}
