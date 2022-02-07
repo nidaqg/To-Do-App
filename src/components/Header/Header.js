@@ -25,6 +25,8 @@ export const Header = () => {
           To-Do List
         </Link>
 
+        <Link className="header-link" to="/login">Login</Link>
+
         <Link className="header-link" to="/home">
           <span className="user-span">
             <Avatar
