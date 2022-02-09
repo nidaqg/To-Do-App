@@ -12,7 +12,7 @@ const [isAuthenticated, setIsAuthenticated] = useState(false);
 
 //check if a user is logged in when app loads
 useEffect(()=> {
-auth.onAuthStateChanged((u)=> {
+const unsubscribeFromAuth=auth.onAuthStateChanged((u)=> {
     if(u) {
         setUser(u);
         setIsAuthenticated(true);
@@ -20,7 +20,10 @@ auth.onAuthStateChanged((u)=> {
     } else {
         setIsLoading(false);
     }
-})
+});
+return () => {
+    unsubscribeFromAuth();
+      }
 },[]);
 
 //login function with auth
