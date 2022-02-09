@@ -14,11 +14,13 @@ import {UserHomePage} from './pages/UserHomePage/UserHomePage';
 import { SignUpPage } from './pages/SignUpPage/SignUpPage';
 import { LoginPage } from './pages/LoginPage/LoginPage';
 
-import {ToDoContextProvider} from "./context/ToDoContext"
+import {ToDoContextProvider} from "./context/ToDoContext";
+import {AuthContextProvider} from "./context/AuthContext";
 
 
 function App() {
   return (
+    <AuthContextProvider>
     <ToDoContextProvider>
     <BrowserRouter>
 
@@ -33,6 +35,7 @@ function App() {
     </Routes>
     </BrowserRouter>
     </ToDoContextProvider>
+    </AuthContextProvider>
   );
 }
 

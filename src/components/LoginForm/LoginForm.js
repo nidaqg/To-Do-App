@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext, useState} from "react";
 import { Link } from "react-router-dom";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import {
@@ -11,8 +11,15 @@ import {
   Text
 } from "@chakra-ui/react";
 import "./LoginFormStyles.scss";
+import { AuthContext } from "../../context/AuthContext";
 
 export const LoginForm = () => {
+
+  const {onLogin}= useContext(AuthContext);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
       <Box className="login-form">
     <Box className="form-box">
@@ -24,17 +31,30 @@ export const LoginForm = () => {
 
       <FormControl>
         <FormLabel htmlFor="email">Email address</FormLabel>
-        <Input id="email" type="email" mb={3} focusBorderColor="pink.100"/>
+        <Input 
+        onChange={(e)=> setEmail(e.target.value)}
+        value={email}
+        id="email" 
+        type="email" 
+        mb={3} 
+        focusBorderColor="pink.100"/>
       </FormControl>
 
       <FormControl>
         <FormLabel htmlFor="password">Password</FormLabel>
-        <Input id="password" type="password" mb={3} focusBorderColor="pink.100"/>
+        <Input 
+        onChange={(e)=> setPassword(e.target.value)}
+       value={password}
+        id="password" 
+        type="password" 
+        mb={3} 
+        focusBorderColor="pink.100"/>
       </FormControl>
 
 
      <Box className="btn-container">
       <Button 
+      onClick={()=> onLogin(email, password)}
       width="100%"
       rightIcon={<ArrowForwardIcon/>}
       colorScheme="pink" 

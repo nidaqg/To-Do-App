@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext, useState} from "react";
 import { Link } from "react-router-dom";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import {
@@ -11,8 +11,20 @@ import {
   Text
 } from "@chakra-ui/react";
 import "./SignUpFormStyles.scss";
+import { AuthContext } from "../../context/AuthContext";
 
 export const SignUpForm = () => {
+
+  const {onSignUp} = useContext(AuthContext);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [reenterpassword, setReenterPassword] = useState("");
+  const [displayname, setDisplayName] = useState("");
+
+
+
+
   return (
     <Box className="sign-up-form">
     <Box className="signup-box">
@@ -23,26 +35,50 @@ export const SignUpForm = () => {
         </Box>
       <FormControl>
         <FormLabel htmlFor="displayName">Display Name</FormLabel>
-        <Input id="displayName" focusBorderColor="pink.100" type="text" mb={3} />
+        <Input 
+        value={displayname}
+        onChange={(e)=> setDisplayName(e.target.value)}
+        id="displayName" 
+        focusBorderColor="pink.100" 
+        type="text" 
+        mb={3} />
       </FormControl>
 
       <FormControl>
         <FormLabel htmlFor="email">Email address</FormLabel>
-        <Input id="email" type="email" mb={3} focusBorderColor="pink.100"/>
+        <Input 
+        value={email}
+        onChange={(e)=> setEmail(e.target.value)}
+        id="email" 
+        type="email" 
+        mb={3} 
+        focusBorderColor="pink.100"/>
       </FormControl>
 
       <FormControl>
         <FormLabel htmlFor="password">Password</FormLabel>
-        <Input id="password" type="password" mb={3} focusBorderColor="pink.100"/>
+        <Input 
+                value={password}
+                onChange={(e)=> setPassword(e.target.value)}
+        
+        id="password" 
+        type="password" 
+        mb={3} 
+        focusBorderColor="pink.100"/>
       </FormControl>
 
       <FormControl>
         <FormLabel htmlFor="password">Re-Enter Password</FormLabel>
-        <Input id="reenterpassword" type="password" mb={3} focusBorderColor="pink.100"/>
+        <Input 
+                value={reenterpassword}
+                onChange={(e)=> setReenterPassword(e.target.value)}
+        
+        id="reenterpassword" type="password" mb={3} focusBorderColor="pink.100"/>
       </FormControl>
 
      <Box className="btn-container">
       <Button 
+      onClick={()=> onSignUp(email, password, reenterpassword)}
       width="100%"
       rightIcon={<ArrowForwardIcon/>}
       colorScheme="pink" 

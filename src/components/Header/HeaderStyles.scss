@@ -19,6 +19,10 @@
             margin-right: 15px;
             align-items: center;
             font-weight: bold;
+
+            &.logout {
+                cursor: pointer;
+            }
         }
 
         .user-span {
