@@ -1,0 +1,20 @@
+.header-link-avatar {
+    margin-right: 15px;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.dropdown-component {
+    position: absolute;
+    width: 240px;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid grey;
+    background-color: white;
+    top: 90px;
+    right: 40px;
+    z-index: 5;  
+}
