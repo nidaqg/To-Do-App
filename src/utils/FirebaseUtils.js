@@ -1,5 +1,6 @@
 import firebase from 'firebase/compat/app';
 import "firebase/compat/auth";
+import "firebase/compat/firestore";
 
 
 // Your web app's Firebase configuration
@@ -16,3 +17,34 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 export const auth = firebase.auth();
+
+export const firestore = firebase.firestore();
+
+export const createUserProfile = async (user, additionalData) => {
+if (!user) return;
+
+const userRef = firestore.doc(`users/${user.uid}`)
+
+const snapShot = await userRef.get();
+
+//if the user does not already exist in the forestore db, do this
+if(!snapShot.exists) {
+  const {email} = user; 
+  const {displayName} = additionalData;
+  const createdAt = new Date();
+
+  try {
+    await userRef.set({
+      displayName,
+      email,
+      createdAt,
+    })
+
+  } catch (err) {
+    console.log("ERROR CREATING USER",err)
+  }
+ }
+ //we still userRef from this code in case we need it elsewhere later on
+ return userRef;
+
+}

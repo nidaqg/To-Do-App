@@ -21,8 +21,8 @@ import {AuthContext} from "./context/AuthContext";
 
 function App() {
 
-  const {isAuthenticated} = useContext(AuthContext);
-
+  const {isAuthenticated, user} = useContext(AuthContext);
+console.log(user)
   return (
     <ToDoContextProvider>
     <BrowserRouter>
@@ -31,17 +31,24 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePage/>}/>
       <Route path="/todo" element={<ToDoPage/>}/>
-      <Route path="/home" element={<UserHomePage/>}/>
+      <Route path="/home" element={
+               !isAuthenticated ? (
+                <Navigate replace to="/" />
+               ): (
+        
+      <UserHomePage/>
+               )
+      }/>
       <Route path="/signup" element={
        isAuthenticated ? (
-        <Navigate replace to="/home" />
+        <Navigate replace to="/" />
        ): (
       <SignUpPage/>
        )
       }/>
       <Route path="login" element={
                isAuthenticated ? (
-                <Navigate replace to="/home" />
+                <Navigate replace to="/" />
                ): (
         
       <LoginPage/>)}/>

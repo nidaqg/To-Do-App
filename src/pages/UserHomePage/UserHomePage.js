@@ -13,16 +13,26 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import React from "react";
+import React, { useContext } from "react";
 import "./UserHomeStyles.scss";
+
+import { AuthContext } from "../../context/AuthContext";
 
 export const UserHomePage = () => {
   const navigate = useNavigate();
+  const {user} = useContext(AuthContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  let currentUser = "";
+  if(user){
+    currentUser = user.displayName
+  } else {
+    currentUser = "to Done With It"
+  }
 
   return (
     <div className="user-home-container">
-      <Heading>Welcome to Done With It!</Heading>
+      <Heading>{`Welcome ${currentUser}!`}</Heading>
 
       <Box className="user-content">
         <Box className="user-box">
