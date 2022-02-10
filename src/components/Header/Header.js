@@ -30,9 +30,6 @@ export const Header = () => {
         <Link className="header-link" to="/">
           Home
         </Link>
-        <Link className="header-link" to="/todo">
-          To-Do List
-        </Link>
         {isAuthenticated ? (
           <>
             <Box className="header-link logout" onClick={() => onLogout()}>

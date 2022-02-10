@@ -8,13 +8,19 @@
 .dropdown-component {
     position: absolute;
     width: 240px;
-    height: 340px;
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    border: 1px solid grey;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    border: 0.5px solid grey;
+    border-radius: 10px;
     background-color: white;
     top: 90px;
     right: 40px;
     z-index: 5;  
+
+    .nav-item {
+        cursor: pointer;
+    }
 }
