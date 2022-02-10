@@ -24,7 +24,6 @@ function App() {
   const {isAuthenticated} = useContext(AuthContext);
 
   return (
-    // <AuthContextProvider>
     <ToDoContextProvider>
     <BrowserRouter>
 
@@ -32,17 +31,17 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePage/>}/>
       <Route path="/todo" element={<ToDoPage/>}/>
-      <Route path="home" element={<UserHomePage/>}/>
-      <Route path="signup" element={
+      <Route path="/home" element={<UserHomePage/>}/>
+      <Route path="/signup" element={
        isAuthenticated ? (
-        <Navigate replace to="/" />
+        <Navigate replace to="/home" />
        ): (
       <SignUpPage/>
        )
       }/>
       <Route path="login" element={
                isAuthenticated ? (
-                <Navigate replace to="/" />
+                <Navigate replace to="/home" />
                ): (
         
       <LoginPage/>)}/>
@@ -50,7 +49,6 @@ function App() {
     </Routes>
     </BrowserRouter>
     </ToDoContextProvider>
-    // </AuthContextProvider>
   );
 }
 

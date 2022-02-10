@@ -1,0 +1,33 @@
+.user-home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+
+    .user-content {
+        width: 80%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 40px;
+
+        .user-box{
+            display: flex;
+            width: 30%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 250ms;
+
+            &:hover {
+            transform: translateY(-10px);
+            }
+        
+        
+        }
+    }
+}

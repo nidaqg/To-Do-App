@@ -7,8 +7,7 @@ import { Box, Image, Center, Button } from "@chakra-ui/react";
 import logo from "./../../assets/homepage-logo.png";
 
 export const HomePage = () => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <div className="homepage-container">
       <Box className="logo-container animate__animated animate__fadeIn animate__slower">
@@ -19,7 +18,9 @@ export const HomePage = () => {
             <Button
               marginY={4}
               colorScheme="pink"
-              onClick={() => {navigate("/todo")}}
+              onClick={() => {
+                navigate("/todo");
+              }}
             >
               Get Started
             </Button>

@@ -1,14 +1,8 @@
 import {
-  Avatar,
   Box,
   Center,
   Image,
-  Fade,
-  ScaleFade,
-  Slide,
-  SlideFade,
 } from "@chakra-ui/react";
-import { ChevronDownIcon } from "@chakra-ui/icons";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./HeaderStyles.scss";
@@ -17,7 +11,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { DropDown } from "../DropDowm/DropDown";
 
 export const Header = () => {
-  const { user, isAuthenticated, onLogout } = useContext(AuthContext);
+  const {isAuthenticated, onLogout } = useContext(AuthContext);
 
   return (
     <div className="header-container">
@@ -40,7 +34,7 @@ export const Header = () => {
               </span> 
           </>
         ) : (
-          <Link className="header-link" to="/login">
+          <Link className="header-link login-link" to="/login">
             Login
           </Link>
         )}
