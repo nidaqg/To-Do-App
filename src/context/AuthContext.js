@@ -15,7 +15,7 @@ export const AuthContextProvider = ({ children }) => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (u) => {
       if (u) {
           const userRef = await createUserProfile(u)
-  setIsLoading(true)
+          setIsLoading(true)
           //set current user with the data from the firestore db
         userRef.onSnapshot((snapShot) => {
             setUser({
@@ -72,7 +72,7 @@ export const AuthContextProvider = ({ children }) => {
               const user = currentUser.user
             
             createUserProfile(user, {displayName});
-            setUser(user, {displayName});
+            // setUser(user, {displayName});
             setIsLoading(false);
             setIsAuthenticated(true);
           });

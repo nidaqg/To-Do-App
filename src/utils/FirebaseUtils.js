@@ -47,4 +47,4 @@ if(!snapShot.exists) {
  //we still userRef from this code in case we need it elsewhere later on
  return userRef;
 
-}
+};
