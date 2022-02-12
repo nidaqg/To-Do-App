@@ -47,8 +47,17 @@ export const AuthContextProvider = ({ children }) => {
         const currentUser = await auth
           .signInWithEmailAndPassword(email, password)
           .then((currentUser) => {
+              const userRef = createUserProfile(currentUser)
+              //set current user with the data from the firestore db
+            userRef.onSnapshot((snapShot) => {
+                setUser({
+                  id: snapShot.id,
+                  ...snapShot.data(),
+                });
+              });
             setIsAuthenticated(true);
-            setIsLoading(false);
+              setIsLoading(false);
+        
           });
       } else {
         setError("Please enter login information");
