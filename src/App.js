@@ -21,8 +21,8 @@ import {AuthContext} from "./context/AuthContext";
 
 function App() {
 
-  const {isAuthenticated, user} = useContext(AuthContext);
-console.log(user)
+  const {isAuthenticated} = useContext(AuthContext);
+
   return (
     <ToDoContextProvider>
     <BrowserRouter>

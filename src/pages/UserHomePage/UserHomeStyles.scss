@@ -5,6 +5,12 @@
     align-items: center;
     margin-top: 50px;
 
+    .loading-container {
+        display: flex;
+        align-items: center;
+        margin-top: 25%;
+    }
+
     .user-content {
         width: 80%;
         display: flex;

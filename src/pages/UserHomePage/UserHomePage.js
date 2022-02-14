@@ -11,6 +11,7 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
+  Spinner
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import React, { useContext } from "react";
@@ -20,7 +21,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 export const UserHomePage = () => {
   const navigate = useNavigate();
-  const {user} = useContext(AuthContext);
+  const {user, isLoading} = useContext(AuthContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   let currentUser = "";
@@ -32,6 +33,20 @@ export const UserHomePage = () => {
 
   return (
     <div className="user-home-container">
+    {
+      isLoading ? (
+<div className="loading-container">
+<Spinner
+  thickness='4px'
+  speed='1s'
+  emptyColor='gray.200'
+  color='blue.500'
+  size='xl'
+/>
+</div>
+
+      ):(
+<>
       <Heading>{`Welcome ${currentUser}!`}</Heading>
 
       <Box className="user-content">
@@ -96,6 +111,9 @@ export const UserHomePage = () => {
         </Box>
       </Box>
       <Box></Box>
+      </>
+      )
+    }
     </div>
   );
 };

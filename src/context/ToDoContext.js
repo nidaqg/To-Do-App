@@ -1,5 +1,5 @@
-import React, { useState, createContext, useEffect} from "react";
-
+import React, { useState, createContext, useEffect, useContext} from "react";
+import {AuthContext} from "./AuthContext";
 export const ToDoContext = createContext();
 
 export const ToDoContextProvider = ({ children }) => {
@@ -7,6 +7,8 @@ export const ToDoContextProvider = ({ children }) => {
     //each item = { item: todo item name, id: id, progress: 0, 1 or 2}
   const [toDoList, setToDoList] = useState([]);
 
+  const {user} = useContext(AuthContext);
+  
   //save to localstorage every time list changes
 useEffect(()=> {
     if(toDoList.length){

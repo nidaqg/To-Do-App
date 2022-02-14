@@ -23,8 +23,11 @@ export const AuthContextProvider = ({ children }) => {
               ...snapShot.data(),
             });
           });
-        setIsAuthenticated(true);
+          setTimeout(() => {
+          setIsAuthenticated(true);
           setIsLoading(false);
+
+          }, 300);
         } else {
           //if userAuth doesn't exist, set current user to null
           setUser(user);
@@ -55,8 +58,15 @@ export const AuthContextProvider = ({ children }) => {
                   ...snapShot.data(),
                 });
               });
-            setIsAuthenticated(true);
-              setIsLoading(false);
+              setTimeout(() => {
+                setIsAuthenticated(true);
+                setIsLoading(false);
+      
+                }, 300);
+      
+
+            // setIsAuthenticated(true);
+            //   setIsLoading(false);
         
           });
       } else {
@@ -81,9 +91,14 @@ export const AuthContextProvider = ({ children }) => {
               const user = currentUser.user
             
             createUserProfile(user, {displayName});
-            // setUser(user, {displayName});
-            setIsLoading(false);
-            setIsAuthenticated(true);
+            setTimeout(() => {
+              setIsAuthenticated(true);
+              setIsLoading(false);
+    
+              }, 300);
+    
+            // setIsLoading(false);
+            // setIsAuthenticated(true);
           });
       } else {
         setError("Error: Passwords do not match");
