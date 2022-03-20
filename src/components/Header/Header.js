@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import "./HeaderStyles.scss";
 import logo from "./../../assets/logo.png";
 import { AuthContext } from "../../context/AuthContext";
-import { DropDown } from "../DropDowm/DropDown";
+import { DropDown } from "../DropDown/DropDown";
 
 export const Header = () => {
   const {isAuthenticated, onLogout } = useContext(AuthContext);

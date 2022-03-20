@@ -1,44 +1,14 @@
-import React, { useState, useEffect, createContext } from "react";
-import { auth, createUserProfile } from "../utils/FirebaseUtils";
+import React, { useState, createContext } from "react";
+import { auth } from "../utils/FirebaseUtils";
 
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   //create states for all the values needed
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(localStorage.getItem("user") || null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  //check if a user is logged in when app loads
-  useEffect(() => {
-    const unsubscribeFromAuth = auth.onAuthStateChanged(async (u) => {
-      if (u) {
-          const userRef = await createUserProfile(u)
-          setIsLoading(true)
-          //set current user with the data from the firestore db
-        userRef.onSnapshot((snapShot) => {
-            setUser({
-              id: snapShot.id,
-              ...snapShot.data(),
-            });
-          });
-          setTimeout(() => {
-          setIsAuthenticated(true);
-          setIsLoading(false);
-
-          }, 300);
-        } else {
-          //if userAuth doesn't exist, set current user to null
-          setUser(user);
-        setIsLoading(false);
-        }
-      
-    });
-    return () => {
-      unsubscribeFromAuth();
-    };
-  }, []);
+  const [isAuthenticated, setIsAuthenticated] = useState(user ? true : false);
 
   //login function with auth
   const onLogin = async (email, password) => {
@@ -50,24 +20,13 @@ export const AuthContextProvider = ({ children }) => {
         const currentUser = await auth
           .signInWithEmailAndPassword(email, password)
           .then((currentUser) => {
-              const userRef = createUserProfile(currentUser)
-              //set current user with the data from the firestore db
-            userRef.onSnapshot((snapShot) => {
-                setUser({
-                  id: snapShot.id,
-                  ...snapShot.data(),
-                });
-              });
-              setTimeout(() => {
-                setIsAuthenticated(true);
-                setIsLoading(false);
-      
-                }, 300);
-      
-
-            // setIsAuthenticated(true);
-            //   setIsLoading(false);
-        
+            setUser({
+              email: currentUser.user.email,
+              id: currentUser.user.uid,
+            });
+            localStorage.setItem("user", JSON.stringify(user));
+            setIsAuthenticated(true);
+            setIsLoading(false);
           });
       } else {
         setError("Please enter login information");
@@ -88,17 +47,16 @@ export const AuthContextProvider = ({ children }) => {
         const currentUser = await auth
           .createUserWithEmailAndPassword(email, password)
           .then((currentUser) => {
-              const user = currentUser.user
-            
-            createUserProfile(user, {displayName});
-            setTimeout(() => {
-              setIsAuthenticated(true);
-              setIsLoading(false);
-    
-              }, 300);
-    
-            // setIsLoading(false);
-            // setIsAuthenticated(true);
+            const user = currentUser.user;
+
+            setUser({
+              email: user.email,
+              id: user.uid,
+              displayName: displayName,
+            });
+            localStorage.setItem("user", JSON.stringify(user));
+            setIsAuthenticated(true);
+            setIsLoading(false);
           });
       } else {
         setError("Error: Passwords do not match");
@@ -113,6 +71,7 @@ export const AuthContextProvider = ({ children }) => {
   //logout function
   const onLogout = () => {
     auth.signOut();
+    localStorage.removeItem("user");
     setUser(null);
     setIsAuthenticated(false);
   };
